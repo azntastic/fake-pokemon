@@ -1,6 +1,7 @@
 require 'sinatra/base'
 
 class Battle < Sinatra::Base
+  attr_reader :hp, :player_1
 
   enable :sessions
 
@@ -18,6 +19,7 @@ class Battle < Sinatra::Base
   get '/play' do
     @player_1 = session[:player_1]
     @player_2 = session[:player_2]
+    @hp = 20
     erb :play
   end
 
