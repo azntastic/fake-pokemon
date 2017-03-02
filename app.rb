@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'player'
+require_relative 'lib/player'
 
 class Battle < Sinatra::Base
   attr_reader :hp, :player_1
@@ -11,8 +11,13 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $player_1 = params[:player_1]
-    $player_2 = params[:player_2]
+    $player_1 = Player.new
+    $player_1.name = params[:player_1]
+    $player_2 = Player.new
+    $player_2.name = params[:player_2]
+
+    p $player_1
+    p $player_2
     #p params
     redirect '/play'
   end
