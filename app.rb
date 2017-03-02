@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'player'
 
 class Battle < Sinatra::Base
   attr_reader :hp, :player_1
@@ -10,17 +11,16 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    session[:player_1] = params[:player_1]
-    session[:player_2] = params[:player_2]
-    p params
+    $player_1 = params[:player_1]
+    $player_2 = params[:player_2]
+    #p params
     redirect '/play'
   end
 
   get '/play' do
-    @player_1 = session[:player_1]
-    @player_2 = session[:player_2]
+
     @hp = 20
-    p $attacked
+    #p $attacked
     erb :play
   end
 
